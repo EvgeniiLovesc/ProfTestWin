@@ -1,0 +1,968 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{14E24C07-79C2-4605-ADD9-8DD85131ABFA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>NK_TEST</RootNamespace>
+    <AssemblyName>NK_TEST</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Server\data\htdocs\Repositories\NKTest\NK_TEST\WinApp\deploy\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>14</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>3B940FDE222016ACAC597A64EF6DB6400B292749</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>NK_TEST_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Configuration.ConfigurationManager.5.0.0\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.AccessControl.5.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Permissions.5.0.0\lib\net461\System.Security.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="Xceed.Document.NET, Version=1.7.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\DocX.1.7.1\lib\net40\Xceed.Document.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Words.NET, Version=1.7.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\DocX.1.7.1\lib\net40\Xceed.Words.NET.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admins\AddAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admins\AddAdmin.Designer.cs">
+      <DependentUpon>AddAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admins\AdminDB.cs" />
+    <Compile Include="admins\AdminsDB.cs" />
+    <Compile Include="admins\EditAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admins\EditAdmin.Designer.cs">
+      <DependentUpon>EditAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Auth\AuthWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Auth\AuthWindow.Designer.cs">
+      <DependentUpon>AuthWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataDB.cs" />
+    <Compile Include="Log\MainLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Log\MainLog.Designer.cs">
+      <DependentUpon>MainLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Log\TestLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Log\TestLog.Designer.cs">
+      <DependentUpon>TestLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Log\UserLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Log\UserLog.Designer.cs">
+      <DependentUpon>UserLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Log\UserLogDB.cs" />
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\Results\ResultOnRulesPrintDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Results\ResultOnRulesPrintDialog.Designer.cs">
+      <DependentUpon>ResultOnRulesPrintDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\User\UserPrintDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\User\UserPrintDialog.Designer.cs">
+      <DependentUpon>UserPrintDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Results\ResultDB.cs" />
+    <Compile Include="Results\ResultsDB.cs" />
+    <Compile Include="Rules\AddRulesGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rules\AddRulesGroup.Designer.cs">
+      <DependentUpon>AddRulesGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rules\DeleteRulesGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rules\DeleteRulesGroup.Designer.cs">
+      <DependentUpon>DeleteRulesGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rules\EditRules.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rules\EditRules.Designer.cs">
+      <DependentUpon>EditRules.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rules\AddRules.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rules\AddRules.Designer.cs">
+      <DependentUpon>AddRules.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rules\FindRules.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rules\FindRules.Designer.cs">
+      <DependentUpon>FindRules.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Rules\RuleDB.cs" />
+    <Compile Include="Rules\RulesDB.cs" />
+    <Compile Include="Rules\RulesGroupDB.cs" />
+    <Compile Include="Server\Information\AddInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Server\Information\AddInformation.Designer.cs">
+      <DependentUpon>AddInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Server\Information\AllInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Server\Information\AllInformation.Designer.cs">
+      <DependentUpon>AllInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Server\Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Server\Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Test.cs" />
+    <Compile Include="Tests\DeleteTestsGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\DeleteTestsGroup.Designer.cs">
+      <DependentUpon>DeleteTestsGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\SettingsTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\SettingsTest.Designer.cs">
+      <DependentUpon>SettingsTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\AbotTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\AbotTest.Designer.cs">
+      <DependentUpon>AbotTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\EditTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\EditTest.Designer.cs">
+      <DependentUpon>EditTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\FindTestStatistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\FindTestStatistic.Designer.cs">
+      <DependentUpon>FindTestStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\FindTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\FindTest.Designer.cs">
+      <DependentUpon>FindTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\MovingTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\MovingTest.Designer.cs">
+      <DependentUpon>MovingTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\SaveToFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\SaveToFile.Designer.cs">
+      <DependentUpon>SaveToFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\SetPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\SetPassword.Designer.cs">
+      <DependentUpon>SetPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\CopyTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\CopyTest.Designer.cs">
+      <DependentUpon>CopyTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\AddTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\AddTest.Designer.cs">
+      <DependentUpon>AddTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\AddTestGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\AddTestGroup.Designer.cs">
+      <DependentUpon>AddTestGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\TestDB.cs" />
+    <Compile Include="Tests\TestsDB.cs" />
+    <Compile Include="Tests\TestsGroupDB.cs" />
+    <Compile Include="Users\FindUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\FindUser.Designer.cs">
+      <DependentUpon>FindUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\ExportUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\ExportUser.Designer.cs">
+      <DependentUpon>ExportUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\ImportUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\ImportUser.Designer.cs">
+      <DependentUpon>ImportUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\AddUserTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\AddUserTypes.Designer.cs">
+      <DependentUpon>AddUserTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\TypeUserDB.cs" />
+    <Compile Include="Users\UserDB.cs" />
+    <Compile Include="Users\UsersDB.cs" />
+    <Compile Include="Users\UsersGroupDB.cs" />
+    <Compile Include="Users\DeleteUserGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\DeleteUserGroup.Designer.cs">
+      <DependentUpon>DeleteUserGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\UserTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\UserTypes.Designer.cs">
+      <DependentUpon>UserTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\EditUserGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\EditUserGroup.Designer.cs">
+      <DependentUpon>EditUserGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\AddUserGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\AddUserGroup.Designer.cs">
+      <DependentUpon>AddUserGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\EditUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\EditUser.Designer.cs">
+      <DependentUpon>EditUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\AddUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\AddUser.Designer.cs">
+      <DependentUpon>AddUser.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admins\AddAdmin.resx">
+      <DependentUpon>AddAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admins\EditAdmin.resx">
+      <DependentUpon>EditAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Auth\AuthWindow.resx">
+      <DependentUpon>AuthWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Log\MainLog.resx">
+      <DependentUpon>MainLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Log\TestLog.resx">
+      <DependentUpon>TestLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Log\UserLog.resx">
+      <DependentUpon>UserLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Reports\Results\ResultOnRulesPrintDialog.resx">
+      <DependentUpon>ResultOnRulesPrintDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\User\UserPrintDialog.resx">
+      <DependentUpon>UserPrintDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rules\AddRulesGroup.resx">
+      <DependentUpon>AddRulesGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rules\DeleteRulesGroup.resx">
+      <DependentUpon>DeleteRulesGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rules\EditRules.resx">
+      <DependentUpon>EditRules.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rules\AddRules.resx">
+      <DependentUpon>AddRules.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rules\FindRules.resx">
+      <DependentUpon>FindRules.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Server\Information\AddInformation.resx">
+      <DependentUpon>AddInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Server\Information\AllInformation.resx">
+      <DependentUpon>AllInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Server\Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\DeleteTestsGroup.resx">
+      <DependentUpon>DeleteTestsGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\SettingsTest.resx">
+      <DependentUpon>SettingsTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\AbotTest.resx">
+      <DependentUpon>AbotTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\EditTest.resx">
+      <DependentUpon>EditTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\FindTestStatistic.resx">
+      <DependentUpon>FindTestStatistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\FindTest.resx">
+      <DependentUpon>FindTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\MovingTest.resx">
+      <DependentUpon>MovingTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\SaveToFile.resx">
+      <DependentUpon>SaveToFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\SetPassword.resx">
+      <DependentUpon>SetPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\CopyTest.resx">
+      <DependentUpon>CopyTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\AddTest.resx">
+      <DependentUpon>AddTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\AddTestGroup.resx">
+      <DependentUpon>AddTestGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\FindUser.resx">
+      <DependentUpon>FindUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\ExportUser.resx">
+      <DependentUpon>ExportUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\ImportUser.resx">
+      <DependentUpon>ImportUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\AddUserTypes.resx">
+      <DependentUpon>AddUserTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\DeleteUserGroup.resx">
+      <DependentUpon>DeleteUserGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\UserTypes.resx">
+      <DependentUpon>UserTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\EditUserGroup.resx">
+      <DependentUpon>EditUserGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\AddUserGroup.resx">
+      <DependentUpon>AddUserGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\EditUser.resx">
+      <DependentUpon>EditUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\AddUser.resx">
+      <DependentUpon>AddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="NK_TEST_TemporaryKey.pfx" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Reports\Doc\Test.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Editor\ckeditor\CHANGES.md" />
+    <None Include="Resources\Editor\ckeditor\LICENSE.md" />
+    <None Include="Resources\Editor\ckeditor\plugins\scayt\CHANGELOG.md" />
+    <None Include="Resources\Editor\ckeditor\plugins\scayt\LICENSE.md" />
+    <None Include="Resources\Editor\ckeditor\plugins\scayt\README.md" />
+    <None Include="Resources\Editor\ckeditor\plugins\wsc\LICENSE.md" />
+    <None Include="Resources\Editor\ckeditor\plugins\wsc\README.md" />
+    <None Include="Resources\Editor\ckeditor\README.md" />
+    <None Include="Resources\Editor\ckeditor\samples\old\htmlwriter\assets\outputforflash\outputforflash.fla" />
+    <None Include="Resources\Editor\ckeditor\samples\toolbarconfigurator\font\config.json" />
+    <None Include="Resources\Editor\ckeditor\samples\toolbarconfigurator\font\fontello.eot" />
+    <None Include="Resources\Editor\ckeditor\samples\toolbarconfigurator\font\fontello.ttf" />
+    <None Include="Resources\Editor\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
+    <None Include="Resources\Editor\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
+    <None Include="Resources\Editor\ckeditor\skins\moono-lisa\readme.md" />
+    <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logoMin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\PNG\512x512\add-file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\PNG\48x48\Plus__Orange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\PNG\64x64\Actions-document-new-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\PNG\50x50\Actions-document-new-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\PNG\64x64\Pencil3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\PNG\48x48\Pencil3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\PNG\48x48\DeleteRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\PNG\48x48\Shield_Green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\PNG\48x48\Checked_Shield_Green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\PNG\48x48\Folder-Add-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\PNG\48x48\folder-move-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\PNG\48x48\Actions-document-edit-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\PNG\48x48\Copy-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\PNG\48x48\Actions-document-save-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\PNG\48x48\Load-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\PNG\48x48\Upload-Folder-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\PNG\48x48\Document-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\PNG\48x48\statistics-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\PNG\48x48\Zoom-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\PNG\48x48\Admin-icon.png" />
+    <None Include="icons\PNG\48x48\Book3.png" />
+    <None Include="icons\PNG\32x32\close.png" />
+    <None Include="icons\PNG\128x128\Plus__Orange.png" />
+    <Content Include="logo.ico" />
+    <None Include="icons\PNG\48x48\show-result.png" />
+    <None Include="icons\PNG\48x48\archive.png" />
+    <None Include="icons\PNG\48x48\list-result.png" />
+    <None Include="icons\PNG\48x48\list-user.png" />
+    <None Include="icons\PNG\48x48\list.png" />
+    <None Include="icons\PNG\48x48\exel.png" />
+    <None Include="icons\PNG\16x16\Box_Green.png" />
+    <None Include="icons\PNG\48x48\Settings-icon.png" />
+    <None Include="icons\PNG\16x16\Rules-of-Fight-Club-icon.png" />
+    <None Include="icons\PNG\16x16\man-icon.png" />
+    <None Include="icons\PNG\48x48\User-Group-icon %281%29.png" />
+    <None Include="icons\PNG\48x48\User-Group-icon.png" />
+    <None Include="icons\PNG\48x48\Mail-icon.png" />
+    <None Include="icons\PNG\48x48\Clock4.png" />
+    <None Include="icons\PNG\48x48\user-add-icon.png" />
+    <None Include="icons\PNG\16x16\no_img.png" />
+    <None Include="icons\PNG\16x16\test.png" />
+    <None Include="icons\PNG\16x16\folder.png" />
+    <None Include="Resources\folder.bmp" />
+    <Content Include="Resources\Editor\CKEDITOR.htm" />
+    <Content Include="Resources\Editor\ckeditor\adapters\jquery.js" />
+    <Content Include="Resources\Editor\ckeditor\build-config.js" />
+    <Content Include="Resources\Editor\ckeditor\ckeditor.js" />
+    <Content Include="Resources\Editor\ckeditor\config.js" />
+    <Content Include="Resources\Editor\ckeditor\contents.css" />
+    <Content Include="Resources\Editor\ckeditor\lang\af.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\ar.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\az.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\bg.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\bn.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\bs.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\ca.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\cs.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\cy.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\da.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\de-ch.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\de.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\el.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\en-au.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\en-ca.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\en-gb.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\en.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\eo.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\es-mx.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\es.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\et.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\eu.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\fa.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\fi.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\fo.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\fr-ca.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\fr.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\gl.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\gu.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\he.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\hi.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\hr.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\hu.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\id.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\is.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\it.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\ja.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\ka.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\km.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\ko.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\ku.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\lt.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\lv.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\mk.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\mn.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\ms.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\nb.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\nl.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\no.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\oc.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\pl.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\pt-br.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\pt.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\ro.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\ru.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\si.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\sk.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\sl.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\sq.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\sr-latn.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\sr.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\sv.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\th.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\tr.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\tt.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\ug.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\uk.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\vi.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\zh-cn.js" />
+    <Content Include="Resources\Editor\ckeditor\lang\zh.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\a11yhelp.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\af.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\ar.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\az.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\bg.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\ca.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\cs.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\cy.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\da.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\de-ch.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\de.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\el.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\en-au.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\en-gb.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\en.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\eo.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\es-mx.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\es.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\et.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\eu.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\fa.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\fi.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\fo.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\fr-ca.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\fr.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\gl.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\gu.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\he.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\hi.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\hr.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\hu.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\id.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\it.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\ja.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\km.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\ko.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\ku.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\lt.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\lv.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\mk.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\mn.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\nb.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\nl.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\no.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\oc.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\pl.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\pt-br.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\pt.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\ro.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\ru.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\si.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\sk.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\sl.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\sq.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\sr-latn.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\sr.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\sv.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\th.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\tr.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\tt.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\ug.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\uk.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\vi.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\zh-cn.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\zh.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\a11yhelp\dialogs\lang\_translationstatus.txt" />
+    <Content Include="Resources\Editor\ckeditor\plugins\about\dialogs\about.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\about\dialogs\hidpi\logo_ckeditor.png" />
+    <Content Include="Resources\Editor\ckeditor\plugins\about\dialogs\logo_ckeditor.png" />
+    <Content Include="Resources\Editor\ckeditor\plugins\clipboard\dialogs\paste.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\dialog\dialogDefinition.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\dialog\styles\dialog.css" />
+    <Content Include="Resources\Editor\ckeditor\plugins\icons.png" />
+    <Content Include="Resources\Editor\ckeditor\plugins\icons_hidpi.png" />
+    <Content Include="Resources\Editor\ckeditor\plugins\image\dialogs\image.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\image\images\noimage.png" />
+    <Content Include="Resources\Editor\ckeditor\plugins\link\dialogs\anchor.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\link\dialogs\link.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\link\images\anchor.png" />
+    <Content Include="Resources\Editor\ckeditor\plugins\link\images\hidpi\anchor.png" />
+    <Content Include="Resources\Editor\ckeditor\plugins\magicline\images\hidpi\icon-rtl.png" />
+    <Content Include="Resources\Editor\ckeditor\plugins\magicline\images\hidpi\icon.png" />
+    <Content Include="Resources\Editor\ckeditor\plugins\magicline\images\icon-rtl.png" />
+    <Content Include="Resources\Editor\ckeditor\plugins\magicline\images\icon.png" />
+    <Content Include="Resources\Editor\ckeditor\plugins\pastefromgdocs\filter\default.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\pastefromword\filter\default.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\pastetools\filter\common.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\pastetools\filter\image.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\scayt\dialogs\dialog.css" />
+    <Content Include="Resources\Editor\ckeditor\plugins\scayt\dialogs\options.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\scayt\dialogs\toolbar.css" />
+    <Content Include="Resources\Editor\ckeditor\plugins\scayt\skins\moono-lisa\scayt.css" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\af.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\ar.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\az.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\bg.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\ca.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\cs.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\cy.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\da.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\de-ch.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\de.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\el.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\en-au.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\en-ca.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\en-gb.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\en.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\eo.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\es-mx.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\es.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\et.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\eu.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\fa.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\fi.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\fr-ca.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\fr.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\gl.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\he.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\hr.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\hu.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\id.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\it.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\ja.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\km.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\ko.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\ku.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\lt.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\lv.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\nb.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\nl.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\no.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\oc.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\pl.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\pt-br.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\pt.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\ro.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\ru.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\si.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\sk.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\sl.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\sq.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\sr-latn.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\sr.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\sv.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\th.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\tr.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\tt.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\ug.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\uk.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\vi.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\zh-cn.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\zh.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\lang\_translationstatus.txt" />
+    <Content Include="Resources\Editor\ckeditor\plugins\specialchar\dialogs\specialchar.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\tableselection\styles\tableselection.css" />
+    <Content Include="Resources\Editor\ckeditor\plugins\tabletools\dialogs\tableCell.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\table\dialogs\table.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\widget\images\handle.png" />
+    <Content Include="Resources\Editor\ckeditor\plugins\wsc\dialogs\ciframe.html" />
+    <Content Include="Resources\Editor\ckeditor\plugins\wsc\dialogs\tmpFrameset.html" />
+    <Content Include="Resources\Editor\ckeditor\plugins\wsc\dialogs\wsc.css" />
+    <Content Include="Resources\Editor\ckeditor\plugins\wsc\dialogs\wsc.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\wsc\dialogs\wsc_ie.js" />
+    <Content Include="Resources\Editor\ckeditor\plugins\wsc\skins\moono-lisa\wsc.css" />
+    <Content Include="Resources\Editor\ckeditor\samples\css\samples.css" />
+    <Content Include="Resources\Editor\ckeditor\samples\img\github-top.png" />
+    <Content Include="Resources\Editor\ckeditor\samples\img\header-bg.png" />
+    <Content Include="Resources\Editor\ckeditor\samples\img\header-separator.png" />
+    <Content Include="Resources\Editor\ckeditor\samples\img\logo.png" />
+    <Content Include="Resources\Editor\ckeditor\samples\img\logo.svg" />
+    <Content Include="Resources\Editor\ckeditor\samples\img\navigation-tip.png" />
+    <Content Include="Resources\Editor\ckeditor\samples\index.html" />
+    <Content Include="Resources\Editor\ckeditor\samples\js\sample.js" />
+    <Content Include="Resources\Editor\ckeditor\samples\js\sf.js" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\ajax.html" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\api.html" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\appendto.html" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\assets\inlineall\logo.png" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\assets\outputxhtml\outputxhtml.css" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\assets\posteddata.php" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\assets\sample.jpg" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\assets\uilanguages\languages.js" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\datafiltering.html" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\dialog\assets\my_dialog.js" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\dialog\dialog.html" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\divreplace.html" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\enterkey\enterkey.html" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\htmlwriter\assets\outputforflash\outputforflash.swf" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\htmlwriter\assets\outputforflash\swfobject.js" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\htmlwriter\outputforflash.html" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\htmlwriter\outputhtml.html" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\index.html" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\inlineall.html" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\inlinebycode.html" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\inlinetextarea.html" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\jquery.html" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\magicline\magicline.html" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\readonly.html" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\replacebyclass.html" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\replacebycode.html" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\sample.css" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\sample.js" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\sample_posteddata.php" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\tabindex.html" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\toolbar\toolbar.html" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\uicolor.html" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\uilanguages.html" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\wysiwygarea\fullpage.html" />
+    <Content Include="Resources\Editor\ckeditor\samples\old\xhtmlstyle.html" />
+    <Content Include="Resources\Editor\ckeditor\samples\toolbarconfigurator\css\fontello.css" />
+    <Content Include="Resources\Editor\ckeditor\samples\toolbarconfigurator\font\fontello.svg" />
+    <Content Include="Resources\Editor\ckeditor\samples\toolbarconfigurator\font\LICENSE.txt" />
+    <Content Include="Resources\Editor\ckeditor\samples\toolbarconfigurator\index.html" />
+    <Content Include="Resources\Editor\ckeditor\samples\toolbarconfigurator\js\abstracttoolbarmodifier.js" />
+    <Content Include="Resources\Editor\ckeditor\samples\toolbarconfigurator\js\fulltoolbareditor.js" />
+    <Content Include="Resources\Editor\ckeditor\samples\toolbarconfigurator\js\toolbarmodifier.js" />
+    <Content Include="Resources\Editor\ckeditor\samples\toolbarconfigurator\js\toolbartextmodifier.js" />
+    <Content Include="Resources\Editor\ckeditor\samples\toolbarconfigurator\lib\codemirror\codemirror.css" />
+    <Content Include="Resources\Editor\ckeditor\samples\toolbarconfigurator\lib\codemirror\codemirror.js" />
+    <Content Include="Resources\Editor\ckeditor\samples\toolbarconfigurator\lib\codemirror\javascript.js" />
+    <Content Include="Resources\Editor\ckeditor\samples\toolbarconfigurator\lib\codemirror\neo.css" />
+    <Content Include="Resources\Editor\ckeditor\samples\toolbarconfigurator\lib\codemirror\show-hint.css" />
+    <Content Include="Resources\Editor\ckeditor\samples\toolbarconfigurator\lib\codemirror\show-hint.js" />
+    <Content Include="Resources\Editor\ckeditor\skins\moono-lisa\dialog.css" />
+    <Content Include="Resources\Editor\ckeditor\skins\moono-lisa\dialog_ie.css" />
+    <Content Include="Resources\Editor\ckeditor\skins\moono-lisa\dialog_ie8.css" />
+    <Content Include="Resources\Editor\ckeditor\skins\moono-lisa\dialog_iequirks.css" />
+    <Content Include="Resources\Editor\ckeditor\skins\moono-lisa\editor.css" />
+    <Content Include="Resources\Editor\ckeditor\skins\moono-lisa\editor_gecko.css" />
+    <Content Include="Resources\Editor\ckeditor\skins\moono-lisa\editor_ie.css" />
+    <Content Include="Resources\Editor\ckeditor\skins\moono-lisa\editor_ie8.css" />
+    <Content Include="Resources\Editor\ckeditor\skins\moono-lisa\editor_iequirks.css" />
+    <Content Include="Resources\Editor\ckeditor\skins\moono-lisa\icons.png" />
+    <Content Include="Resources\Editor\ckeditor\skins\moono-lisa\icons_hidpi.png" />
+    <Content Include="Resources\Editor\ckeditor\skins\moono-lisa\images\arrow.png" />
+    <Content Include="Resources\Editor\ckeditor\skins\moono-lisa\images\close.png" />
+    <Content Include="Resources\Editor\ckeditor\skins\moono-lisa\images\hidpi\close.png" />
+    <Content Include="Resources\Editor\ckeditor\skins\moono-lisa\images\hidpi\lock-open.png" />
+    <Content Include="Resources\Editor\ckeditor\skins\moono-lisa\images\hidpi\lock.png" />
+    <Content Include="Resources\Editor\ckeditor\skins\moono-lisa\images\hidpi\refresh.png" />
+    <Content Include="Resources\Editor\ckeditor\skins\moono-lisa\images\lock-open.png" />
+    <Content Include="Resources\Editor\ckeditor\skins\moono-lisa\images\lock.png" />
+    <Content Include="Resources\Editor\ckeditor\skins\moono-lisa\images\refresh.png" />
+    <Content Include="Resources\Editor\ckeditor\skins\moono-lisa\images\spinner.gif" />
+    <Content Include="Resources\Editor\ckeditor\styles.js" />
+    <Content Include="Resources\Editor\ckeditor\vendor\promise.js" />
+    <Content Include="Resources\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Reports\Tests\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,30 @@
+﻿<html>
+<head>
+    <script src='ckeditor/ckeditor.js'></script>
+    <!-- <script src="http://cdn.ckeditor.com/4.4.7/full/ckeditor.js"></script> -->
+    <style>
+        textarea {
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        .main {
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+    <body onload="InitEditor()">
+        <div class="main">
+            <textarea id='editor1' name='editor1'>
+            </textarea>
+        </div>
+    </body>
+
+    <script type='text/javascript'>
+        function InitEditor() { CKEDITOR.replace('editor1'); }
+    </script>
+
+
+    </html>
