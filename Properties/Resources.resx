@@ -220,11 +220,17 @@
   <data name="show-result" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\PNG\48x48\show-result.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Plus__Orange1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\PNG\128x128\Plus__Orange.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="close" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\PNG\32x32\close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Actions-document-edit-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\PNG\48x48\Actions-document-edit-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="image" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\PNG\512x512\image.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="list-result" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\PNG\48x48\list-result.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -244,7 +250,7 @@
   <data name="Rules_of_Fight_Club_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\PNG\16x16\Rules-of-Fight-Club-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Plus__Orange1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\PNG\128x128\Plus__Orange.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="picture" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\PNG\512x512\picture.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

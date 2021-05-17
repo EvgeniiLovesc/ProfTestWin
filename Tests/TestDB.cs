@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using System.IO;
 
 namespace NK_TEST.Tests
 {
     class TestDB
     {
-
+        #region Свойства
         public string connectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
 
         public int    id;
@@ -46,37 +49,13 @@ namespace NK_TEST.Tests
 
         public List<Question> questions_list = new List<Question>();
 
-        public TestDB(
-            string name,
-            int owner_id,
-            string description,
-            DateTime date_created, 
-            DateTime date_last_saved,
-            int number_groups,
-            int number_questions,
-            int number_messages,
-            int number_scale,
-            int number_test_version,
-            int number_results,
-            string instructions,
-            int display_instructions,
-            string type,
-            int navi_true_get_back_questions,
-            int navi_true_skip_questions,
-            int navi_block_finish_test_before_get_all_answers,
-            int time_true_endless,
-            int time_true_limited,
-            string time_limit_value,
-            int blend_no_blend,
-            int blend_individual,
-            int blend_all_questions,
-            int descript_display_for_test_time,
-            int descript_display_for_error,
-            int result_display_error_after_test,
-            int result_display_rigth_answer,
-            int group_id
-            )     
-        {
+        #endregion
+
+        #region Создание обьекта TestDB
+        public TestDB(string name, int owner_id, string description, DateTime date_created, DateTime date_last_saved, int number_groups, int number_questions,  int number_messages, int number_scale, int number_test_version, int number_results, 
+            string instructions, int display_instructions, string type,  int navi_true_get_back_questions, int navi_true_skip_questions, int navi_block_finish_test_before_get_all_answers, int time_true_endless, int time_true_limited,  
+            string time_limit_value,  int blend_no_blend,  int blend_individual,  int blend_all_questions, int descript_display_for_test_time,  int descript_display_for_error, int result_display_error_after_test, int result_display_rigth_answer, int group_id)    
+         {
         
              this.name = name;
              this.owner_id = owner_id;
@@ -233,8 +212,9 @@ namespace NK_TEST.Tests
 
                 // Создаём вопрос по дефолту и добавляем его в list всех вопросов
                 Question first_question = new Question();
-                first_question.name = "Вопрос 1";
+                first_question.name = "Новый";
                 first_question.test_id = this.id;
+                first_question.type_id = 1; // Один правильный ответ
                 first_question.AddToDB();
                 first_question = null;
                 //Получим новый вопрос с присвоенным Id
@@ -250,7 +230,9 @@ namespace NK_TEST.Tests
 
             }       
         }
+        #endregion
 
+        #region TestDB obj : Insert,Update,Delete
         public void AddToDB() 
         {
             SqlConnection connection = new SqlConnection(connectionString);
@@ -329,8 +311,105 @@ namespace NK_TEST.Tests
             }        
         
         }
+        public void Delete(int id)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            try
+            {
+                // Получим тест
+                TestDB test = new TestDB(id);
+                // Получим все id вопросов, которые будем удалять
+                for (int i = 0; i < test.questions_list.Count(); i++)
+                {
+                    // Удалим ответы к вопросам теста из таблицы answers зная id вопросов чтобы
+                    // не было конфлика FK
+                    string sql_answers_test = "DELETE FROM answers WHERE questions_id = '" + test.questions_list[i].id.ToString() + "';";
+                    SqlCommand command_answers = new SqlCommand(sql_answers_test, connection);
+                    connection.Open();
+                    command_answers.ExecuteNonQuery();
+                    connection.Close();
+                }
+
+                // Удалим вопросы теста из таблицы questions
+                // не было конфлика FK
+                string sql_quest_tests = "DELETE FROM questions WHERE test_id = '" + id.ToString() + "';";
+                SqlCommand command_quest_tests = new SqlCommand(sql_quest_tests, connection);
+                connection.Open();
+                command_quest_tests.ExecuteNonQuery();
+                connection.Close();
+
+                // Далее удалим тест
+                string sql_test = "DELETE FROM tests WHERE id = '" + id.ToString() + "';";
+                SqlCommand command_test = new SqlCommand(sql_test, connection);
+                connection.Open();
+                command_test.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+        public void Save() 
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            try
+            {
+                
+                string sql_test = "UPDATE tests SET " + 
+                    "name = '" + this.name + 
+                    "', owner_id = '" + this.owner_id + 
+                    "', description = '" + this.description +
+                    "', date_created = '" + this.date_created +
+                    "', date_last_saved = '" + this.date_last_saved +
+                    "', number_groups = '" + this.number_groups +
+                    "', number_questions = '" + this.number_questions +
+                    "', number_messages = '" + this.number_messages +
+                    "', number_scale = '" + this.number_scale +
+                    "', number_test_version = '" + this.number_test_version +
+                    "', number_results = '" + this.number_results +
+                    "', instructions = '" + this.instructions +
+                    "', display_instructions = '" + this.display_instructions +
+                    "', type = '" + this.type +
+                    "', navi_true_get_back_questions = '" + this.navi_true_get_back_questions +
+                    "', navi_true_skip_questions = '" + this.navi_true_skip_questions +
+                    "', navi_block_finish_test_before_get_all_answers = '" + this.navi_block_finish_test_before_get_all_answers +
+                    "', time_true_endless = '" + this.time_true_endless +
+                    "', time_true_limited = '" + this.time_true_limited +
+                    "', time_limit_value = '" + this.time_limit_value +
+                    "', blend_no_blend = '" + this.blend_no_blend +
+                    "', blend_individual = '" + this.blend_individual +
+                    "', blend_all_questions = '" + this.blend_all_questions +
+                    "', descript_display_for_test_time = '" + this.descript_display_for_test_time +
+                    "', descript_display_for_error = '" + this.descript_display_for_error +
+                    "', result_display_error_after_test = '" + this.result_display_error_after_test +
+                    "', result_display_rigth_answer = '" + this.result_display_rigth_answer +
+                    "', group_id = '" + this.group_id +
+                    "' WHERE id = " + this.id.ToString();
+
+                SqlCommand command_test = new SqlCommand(sql_test, connection);
+                connection.Open();
+                command_test.ExecuteNonQuery();
+                connection.Close();
+
+                // Обновим вопросы
+                for (int i=0;i<this.questions_list.Count; i++)
+                {
+                    this.questions_list[i].Save();
+                }
 
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }        
+        
+        }
+        #endregion
+
+        #region Функции 
         public string group_name()
         {
             string result = "";
@@ -397,50 +476,12 @@ namespace NK_TEST.Tests
                 MessageBox.Show(ex.Message);
             }         
         }
+        #endregion
 
-        public void Delete(int id)
-        {
-            SqlConnection connection = new SqlConnection(connectionString);
-            try
-            {
-                // Получим тест
-                TestDB test = new TestDB(id);
-                // Получим все id вопросов, которые будем удалять
-                for (int i = 0; i < test.questions_list.Count(); i++)
-                {
-                    // Удалим ответы к вопросам теста из таблицы answers зная id вопросов чтобы
-                    // не было конфлика FK
-                    string sql_answers_test = "DELETE FROM answers WHERE questions_id = '" + test.questions_list[i].id.ToString() + "';";
-                    SqlCommand command_answers = new SqlCommand(sql_answers_test, connection);
-                    connection.Open();
-                    command_answers.ExecuteNonQuery();
-                    connection.Close();
-                }
-
-                // Удалим вопросы теста из таблицы questions
-                // не было конфлика FK
-                string sql_quest_tests = "DELETE FROM questions WHERE test_id = '" + id.ToString() + "';";
-                SqlCommand command_quest_tests = new SqlCommand(sql_quest_tests, connection);
-                connection.Open();
-                command_quest_tests.ExecuteNonQuery();
-                connection.Close();
-
-                // Далее удалим тест
-                string sql_test = "DELETE FROM tests WHERE id = '" + id.ToString() + "';";
-                SqlCommand command_test = new SqlCommand(sql_test, connection);
-                connection.Open();
-                command_test.ExecuteNonQuery();
-                connection.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        // ДОП КЛАССЫ ------------------------------------------------------------
-
+        // -------------------------------------------------------------------------------------
+        // ДОП КЛАССЫ --------------------------------------------------------------------------
+        // -------------------------------------------------------------------------------------
+        #region Класс Question
         public class Question
         {
 
@@ -457,9 +498,9 @@ namespace NK_TEST.Tests
             public string comments;
             public int group_id;
 
-            
-            List<Answers> answers_list;
 
+            public List<Answers> answers_list = new List<Answers>();
+            public List<Images> images_list = new List<Images>();
 
 
             public Question() { }
@@ -467,6 +508,13 @@ namespace NK_TEST.Tests
             public Question(string name) 
             {
                 this.name = name;
+                // Создаём ответ по дефолту и добавляем его в list всех вопросов
+                Answers first_answer = new Answers();
+                first_answer.name = "Ответ #1";
+                first_answer.questions_id = this.id;
+                first_answer.AddToDB();
+                // Добавим в список
+                this.answers_list.Add(first_answer);
             }
 
             public Question(int id, string name, string description, int test_id, int img_id, int type_id,
@@ -482,17 +530,18 @@ namespace NK_TEST.Tests
                 this.additional = additional;
                 this.comments = comments;
                 this.group_id = group_id;
- 
+                this.getAnswers();
+                this.getImages(false);
             }
 
-            public Question(int test_id) 
+            public Question(int question_id) 
             {
                 SqlConnection connection = new SqlConnection(connectionString);
                 try
                 {
                     connection.Open();
                     SqlDataReader dataReader;
-                    string sql = "SELECT * FROM questions WHERE test_id = '" + test_id.ToString() + "' ORDER BY id DESC";
+                    string sql = "SELECT TOP 1 * FROM questions WHERE id = '" + question_id.ToString() + "' ORDER BY id DESC";
                     SqlCommand command = new SqlCommand(sql, connection);
                     dataReader = command.ExecuteReader();
 
@@ -510,18 +559,101 @@ namespace NK_TEST.Tests
                        this.group_id = Convert.ToInt32(dataReader.GetValue(9));
                     }
                     connection.Close();
-
-                    // Создаём ответ по дефолту и добавляем его в list всех вопросов
-                    Answers first_answer = new Answers();
-                    first_answer.name = "Ответ #1";
-                    first_answer.questions_id = this.id;
-                    first_answer.AddToDB();
-                    // Добавим в список
-                    this.answers_list.Add(first_answer);
-
+                    getAnswers();
+                    getImages(false);
                 }
                 catch (Exception ex) { }             
+            }
+
+            public  void getAnswers() 
+            {
+                SqlConnection connection = new SqlConnection(connectionString);
+                try
+                {
+                    connection.Open();
+                    SqlDataReader dataReader;
+                    string sql = "SELECT * FROM answers WHERE questions_id = '" + this.id.ToString() + "' ORDER BY id";
+                    SqlCommand command = new SqlCommand(sql, connection);
+                    dataReader = command.ExecuteReader();
+                    Answers obj = new Answers();
+                    this.answers_list.Clear();
+                    while (dataReader.Read())
+                    {
+                       this.answers_list.Add(new TestDB.Answers(
+                           obj.id = Convert.ToInt32(dataReader.GetValue(0)),
+                           obj.name = dataReader.GetValue(1).ToString(),
+                           obj.points = Convert.ToInt32(dataReader.GetValue(2)),
+                           obj.position = Convert.ToInt32(dataReader.GetValue(3)),
+                           obj.comment = dataReader.GetValue(4).ToString(),
+                           obj.questions_id = Convert.ToInt32(dataReader.GetValue(5)),
+                           obj.correct = Convert.ToInt32(dataReader.GetValue(6)),
+                           obj.group_id = Convert.ToInt32(dataReader.GetValue(7))                           
+                           ));
+                    }
+                    connection.Close();
                 }
+                catch (Exception ex) { }             
+            }
+
+            public void getImages(bool withImagesBIN) 
+            {
+                SqlConnection connection = new SqlConnection(connectionString);
+                try
+                {
+                    connection.Open();
+                    SqlDataReader dataReader;
+
+                    if (!withImagesBIN)
+                    {
+                        this.images_list.Clear();
+                        string sql = "SELECT id, name, src, comment, question_id FROM images WHERE question_id = '" + this.id.ToString() + "' ORDER BY id";
+                        SqlCommand command = new SqlCommand(sql, connection);
+                        dataReader = command.ExecuteReader();
+                        Images obj = new Images();
+
+                        while (dataReader.Read())
+                        {
+                            this.images_list.Add(new Images(
+                                 Convert.ToInt32(dataReader.GetValue(0)),
+                                 dataReader.GetValue(1).ToString(),
+                                 dataReader.GetValue(2).ToString(),
+                                 dataReader.GetValue(3).ToString(),
+                                 //(byte[])dataReader.GetValue(4),
+                                 //null,
+                                 Convert.ToInt32(dataReader.GetValue(4))
+                                ));
+                        }
+                        connection.Close();
+                    }
+                    else 
+                    {
+                        this.images_list.Clear();
+                        string sql = "SELECT id, name, src, comment, image_obj, question_id FROM images WHERE question_id = '" + this.id.ToString() + "' ORDER BY id";
+                        SqlCommand command = new SqlCommand(sql, connection);
+                        dataReader = command.ExecuteReader();
+                        Images obj = new Images();
+
+                        while (dataReader.Read())
+                        {
+                            this.images_list.Add(new Images(
+                                 Convert.ToInt32(dataReader.GetValue(0)),
+                                 dataReader.GetValue(1).ToString(),
+                                 dataReader.GetValue(2).ToString(),
+                                 dataReader.GetValue(3).ToString(),
+                                 (byte[])dataReader.GetValue(4),
+                                 Convert.ToInt32(dataReader.GetValue(5))
+                                ));
+                        }
+                        connection.Close();                    
+                    }
+
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка загрузки изображений: " + ex.ToString());
+                }               
+            }
 
             public void AddToDB()
             {
@@ -556,11 +688,61 @@ namespace NK_TEST.Tests
                     command.ExecuteNonQuery();
                     connection.Close();
 
+                    // Получим Id только что созданного вопроса
+                    TestDB.Question quest = new TestDB.Question();
+                    quest.GetLastByTestId(this.test_id);
+
+                    // Создаём ответ по дефолту и добавляем его в list всех вопросов
+                    Answers first_answer = new Answers();
+                    first_answer.name = "Ответ #1";
+                    first_answer.questions_id = quest.id;
+                    first_answer.AddToDB();
+                    quest = null;
+                    // Добавим в список
+                    this.answers_list.Add(first_answer);
+
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Ошибка создания Вопроса теста: " +  ex.ToString());
                 }
+            }
+
+            public void Save() 
+            {
+                SqlConnection connection = new SqlConnection(connectionString);
+                try
+                {
+                
+                    string sql = "UPDATE questions SET " + 
+                        "name = '" + this.name + 
+                        "', description = '" + this.description + 
+                        "', test_id = '" + this.test_id + 
+                        "', img_id = '" + this.img_id + 
+                        "', type_id = '" + this.type_id + 
+                        "', points = '" + this.points + 
+                        "', additional = '" + this.additional + 
+                        "', comments = '" + this.comments + 
+                        "', group_id = '" + this.group_id + 
+                        "' WHERE id = " + this.id.ToString();
+
+                    SqlCommand command = new SqlCommand(sql, connection);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+
+                    // Обновим ответы
+                    for (int i=0;i<this.answers_list.Count; i++)
+                    {
+                        this.answers_list[i].Save();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }        
+        
             }
 
             public void GetLastByTestId(int test_id)
@@ -570,7 +752,7 @@ namespace NK_TEST.Tests
                 {
                     connection.Open();
                     SqlDataReader dataReader;
-                    string sql = "SELECT TOP 1 FROM questions WHERE test_id = '" + test_id.ToString() + "' ORDER BY id DESC";
+                    string sql = "SELECT TOP 1 * FROM questions WHERE test_id = '" + test_id.ToString() + "' ORDER BY id DESC";
                     SqlCommand command = new SqlCommand(sql, connection);
                     dataReader = command.ExecuteReader();
 
@@ -598,11 +780,23 @@ namespace NK_TEST.Tests
                     //this.answers_list.Add(first_answer);
 
                 }
-                catch (Exception ex) { }             
+                catch (Exception ex) 
+                {
+                    MessageBox.Show("Ошибка GetLastByTestId: " + ex.ToString());
+                
+                }             
             }
 
             public void Delete(int id) 
             {
+
+                //Удалим ответы
+                for (int i=0;i<this.answers_list.Count;i++) 
+                {
+                    this.answers_list[i].Delete();
+                }
+                
+                // Затем удалим вопрос
                 SqlConnection connection = new SqlConnection(connectionString);
                 try
                 {
@@ -619,89 +813,7 @@ namespace NK_TEST.Tests
         
             }
 
-
         }
-
-        public class Answers 
-        {
-            public string connectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
-            
-            public int id;
-            public string name;
-            public float points;
-            public int position;
-            public string comment;
-            public int questions_id;
-            
-            public Answers() { }
-            public Answers(int question_id)
-            {
-                SqlConnection connection = new SqlConnection(connectionString);
-                try
-                {
-                    connection.Open();
-                    SqlDataReader dataReader;
-                    string sql = "SELECT * FROM answers WHERE questions_id = '" + question_id.ToString() + "' ORDER BY id DESC";
-                    SqlCommand command = new SqlCommand(sql, connection);
-                    dataReader = command.ExecuteReader();
-
-                    while (dataReader.Read())
-                    {
-                       this.id = Convert.ToInt32(dataReader.GetValue(0));
-                       this.name = dataReader.GetValue(1).ToString();
-                       this.points = Convert.ToInt32(dataReader.GetValue(2));
-                       this.position = Convert.ToInt32(dataReader.GetValue(3));
-                       this.comment = dataReader.GetValue(4).ToString();
-                       this.questions_id = Convert.ToInt32(dataReader.GetValue(5));
-
-                    }
-                    connection.Close();
-
-                    // Создаём ответ по дефолту и добавляем его в list всех вопросов
-                    //Answers first_answer = new Answers(this.id);
-                    //first_answer.name = "Ответ #1";
-                    //first_answer.AddToDB();
-                    //// Добавим в список
-                    //this.answers_list.Add(first_answer);
-
-                }
-                catch (Exception ex) { }             
-                }           
- 
-            public void AddToDB()
-            {
-                SqlConnection connection = new SqlConnection(connectionString);
-                try
-                {
-
-                    string sql = "INSERT INTO answers(" +
-                        "name, " +
-                        "points, " +
-                        "position, " +
-                        "comment, " +
-                        "questions_id " +
-                        ") VALUES('"
-                        + this.name + "', '"
-                        + this.points + "', '"
-                        + this.position + "', '"
-                        + this.comment + "', '"
-                        + this.questions_id
-                        + "');";
-
-                    SqlCommand command = new SqlCommand(sql, connection);
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                    connection.Close();
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-
-        }
-
         public class question_group 
         {
             int id;
@@ -716,6 +828,305 @@ namespace NK_TEST.Tests
             List<Answers> answers_list;
 
         }
+        #endregion
+  
+
+        #region Класс Images
+        public class Images 
+        {
+            public string connectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;             
+            
+            public int id;
+            public string name;
+            public string src;
+            public string comment;
+            //public Image image_obj;
+            public byte[] image_obj;
+            public byte[] image_bin;
+            public int question_id;
+
+            public Images() { }
+
+            public Images(int id) 
+            {
+                try
+                {
+                    using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                    {
+                        sqlConnection.Open();
+                        SqlDataReader dataReader;
+                        SqlCommand sqlCommand = new SqlCommand("SELECT id, name, src, comment, image_obj, question_id FROM images WHERE id = '" + id + "';", sqlConnection); 
+                        dataReader = sqlCommand.ExecuteReader();
+                        while (dataReader.Read())
+                        {
+                            this.id = Convert.ToInt32(dataReader.GetValue(0));
+                            this.name = dataReader.GetValue(1).ToString();
+                            this.src = dataReader.GetValue(2).ToString();
+                            this.comment = dataReader.GetValue(3).ToString();
+                            this.image_obj = (byte[])dataReader.GetValue(4);
+                            //this.image_bin = (byte[])dataReader.GetValue(5); 
+                            this.question_id = Convert.ToInt32(dataReader.GetValue(5));
+                        }
+                        dataReader.Close();
+                        sqlConnection.Close();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Ошибка загрузки изображения: " + ex.ToString()) ;
+                }            
+            }
+
+            public Images(int id, string name, string src, string comment, int question_id) 
+            {
+                this.id = id; 
+                this.name = name;
+                this.src = src;
+                this.comment = comment;
+                //this.image_obj = image_obj;
+                //this.image_bin = image_bin;
+                this.question_id = question_id;
+            }
+
+            public Images(int id, string name, string src, string comment, byte[] image_obj, int question_id) 
+            {
+                this.id = id; 
+                this.name = name;
+                this.src = src;
+                this.comment = comment;
+                this.image_obj = image_obj;
+                this.question_id = question_id;
+            }
+
+            public void AddToDB()
+            {
+                SqlConnection connection = new SqlConnection(connectionString);
+                try 
+                {
+                    string sql = "INSERT INTO images (name, src, comment, image_obj, image_bin, question_id) VALUES('"
+                        + this.name + "', '"
+                        + this.src + "', '"
+                        + this.comment + "', "
+                        + "@image_obj, '" 
+                        + this.image_bin + "', '" 
+                        + this.question_id +  "');";
+
+                    SqlParameter imageParameter = new SqlParameter("@image_obj", SqlDbType.Image);
+                    imageParameter.Value = this.image_bin; 
+                    SqlCommand command = new SqlCommand(sql, connection);
+                    command.Parameters.Add(imageParameter);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+
+                }
+                catch
+                {
+                    MessageBox.Show("Соединение не установленно");
+                }
+            }
+
+            public void getById(int id)
+            {
+                try
+                {
+                    using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                    {
+                        sqlConnection.Open();
+                        SqlDataReader dataReader;
+                        SqlCommand sqlCommand = new SqlCommand("SELECT id, name, src, comment, question_id FROM images WHERE id = '" + id + "';", sqlConnection); 
+                        dataReader = sqlCommand.ExecuteReader();
+                        while (dataReader.Read())
+                        {
+                            this.id = Convert.ToInt32(dataReader.GetValue(0));
+                            this.name = dataReader.GetValue(1).ToString();
+                            this.src = dataReader.GetValue(2).ToString();
+                            this.comment = dataReader.GetValue(3).ToString();
+                            //this.image_obj = (byte[])dataReader.GetValue(4);
+                            //this.image_bin = (byte[])dataReader.GetValue(5); 
+                            this.question_id = Convert.ToInt32(dataReader.GetValue(4));
+                        }
+                        dataReader.Close();
+                        sqlConnection.Close();
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Не удалось загрузить изображение");
+                }
+               
+            }
+
+        public Image getImage()
+        { 
+            MemoryStream ms_image = new MemoryStream(this.image_obj, 0, this.image_obj.Length);
+            
+            return Image.FromStream(ms_image);
+        }
+
+      
+        }
+        #endregion
+
+
+        #region Класс Answers
+        public class Answers 
+        {
+            public string connectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
+            
+            public int id;
+            public string name;
+            public int points;
+            public int position;
+            public string comment;
+            public int questions_id;
+            public int correct;
+            public int group_id;
+            
+            public Answers() { }
+
+            public Answers(int id, string name, int points, int position, string comment, int questions_id, int correct, int group_id)
+            {
+                this.id = id;
+                this.name = name;
+                this.points = points;
+                this.position = position;
+                this.comment = comment;
+                this.questions_id = questions_id;
+                this.correct = correct;
+                this.group_id = group_id;          
+            }
+
+            public Answers(int id)
+            {
+                SqlConnection connection = new SqlConnection(connectionString);
+                try
+                {
+                    connection.Open();
+                    SqlDataReader dataReader;
+                    string sql = "SELECT TOP 1 * FROM answers WHERE id = '" + id.ToString() + "' ORDER BY id DESC";
+                    SqlCommand command = new SqlCommand(sql, connection);
+                    dataReader = command.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                       this.id = Convert.ToInt32(dataReader.GetValue(0));
+                       this.name = dataReader.GetValue(1).ToString();
+                       this.points = Convert.ToInt32(dataReader.GetValue(2));
+                       this.position = Convert.ToInt32(dataReader.GetValue(3));
+                       this.comment = dataReader.GetValue(4).ToString();
+                       this.questions_id = Convert.ToInt32(dataReader.GetValue(5));
+                       this.correct = Convert.ToInt32(dataReader.GetValue(6));
+                       this.group_id = Convert.ToInt32(dataReader.GetValue(7));
+                    }
+                    connection.Close();
+
+                }
+                catch (Exception ex) { }             
+                }            
+
+            public void AddToDB()
+            {
+                SqlConnection connection = new SqlConnection(connectionString);
+                try
+                {
+
+                    string sql = "INSERT INTO answers(" +
+                        "name, " +
+                        "points, " +
+                        "position, " +
+                        "comment, " +
+                        "questions_id, " +
+                        "correct, " +
+                        "group_id " +
+                        ") VALUES('"
+                        + this.name + "', '"
+                        + this.points + "', '"
+                        + this.position + "', '"
+                        + this.comment + "', '"
+                        + this.questions_id + "', '"
+                        + this.correct + "', '"
+                        + this.group_id
+                        + "');";
+
+                    SqlCommand command = new SqlCommand(sql, connection);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Answers:AddToDB ошибка: " + ex.Message);
+                }
+            }
+            public void Save() 
+            {
+                SqlConnection connection = new SqlConnection(connectionString);
+                try
+                {
+                
+                    string sql = "UPDATE answers SET " + 
+                        "name = '" + this.name + 
+                        "', points = '" + this.points + 
+                        "', position = '" + this.position + 
+                        "', comment = '" + this.comment + 
+                        "', questions_id = '" + this.questions_id +
+                        "', correct = '" + this.correct +
+                        "', group_id = '" + this.group_id +
+                        "' WHERE id = " + this.id.ToString();
+
+                    SqlCommand command = new SqlCommand(sql, connection);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }        
+        
+            }
+
+            public void Delete(int id) 
+            {
+                SqlConnection connection = new SqlConnection(connectionString);
+                try
+                {
+                    string sql = "DELETE FROM answers WHERE id = '" + id.ToString() +  "';";
+                    SqlCommand command = new SqlCommand(sql, connection);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }        
+        
+            }
+
+            public void Delete() 
+            {
+                SqlConnection connection = new SqlConnection(connectionString);
+                try
+                {
+                    string sql = "DELETE FROM answers WHERE id = '" + this.id.ToString() +  "';";
+                    SqlCommand command = new SqlCommand(sql, connection);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }        
+        
+            }
+
+        }
+        #endregion
 
 
     }

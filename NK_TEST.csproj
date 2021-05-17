@@ -229,11 +229,35 @@
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
     <Compile Include="Test.cs" />
+    <Compile Include="Tests\ImageDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\ImageDetail.Designer.cs">
+      <DependentUpon>ImageDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\EditAnswer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\EditAnswer.Designer.cs">
+      <DependentUpon>EditAnswer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\AddAnswer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\AddAnswer.Designer.cs">
+      <DependentUpon>AddAnswer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tests\DeleteTestsGroup.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Tests\DeleteTestsGroup.Designer.cs">
       <DependentUpon>DeleteTestsGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tests\QuestionViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\QuestionViewer.Designer.cs">
+      <DependentUpon>QuestionViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="Tests\SettingsTest.cs">
       <SubType>Form</SubType>
@@ -435,8 +459,20 @@
     <EmbeddedResource Include="Server\Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Tests\ImageDetail.resx">
+      <DependentUpon>ImageDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\EditAnswer.resx">
+      <DependentUpon>EditAnswer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\AddAnswer.resx">
+      <DependentUpon>AddAnswer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tests\DeleteTestsGroup.resx">
       <DependentUpon>DeleteTestsGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\QuestionViewer.resx">
+      <DependentUpon>QuestionViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tests\SettingsTest.resx">
       <DependentUpon>SettingsTest.cs</DependentUpon>
@@ -602,6 +638,8 @@
     <None Include="icons\PNG\48x48\Book3.png" />
     <None Include="icons\PNG\32x32\close.png" />
     <None Include="icons\PNG\128x128\Plus__Orange.png" />
+    <None Include="icons\PNG\512x512\image.png" />
+    <None Include="icons\PNG\512x512\picture.png" />
     <Content Include="logo.ico" />
     <None Include="icons\PNG\48x48\show-result.png" />
     <None Include="icons\PNG\48x48\archive.png" />

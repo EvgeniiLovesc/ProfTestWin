@@ -113,6 +113,7 @@ namespace NK_TEST
             int selected_id = Convert.ToInt32(selectedRow.Cells["id_test"].Value); 
             
             EditTest ete = new EditTest(selected_id);
+            
             ete.Show();
         }
 

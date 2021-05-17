@@ -70,6 +70,8 @@ namespace NK_TEST.Users
             EditTest et = new EditTest(test.name);
             test = null;
             et.Show();
+
+            main_fm.UpdateDGV_Tests();
         }
 
         private void btnCancel_Click_1(object sender, EventArgs e)
